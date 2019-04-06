@@ -4,12 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Pregunta extends Model
-
-
-
-{
-   $fillable.
+class Pregunta extends Model {
 
     protected $fillable = [
         'enunciado', 'respuesta',

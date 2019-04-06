@@ -13,6 +13,25 @@ $botman->hears('/start', function ($bot) {
     $nombres = $bot->getUser()->getFirstName() ?: "desconocido";
     $bot->reply('Hola ' . $nombres . ', bienvenido al bot SimpleQuizzes!');
 });
+//////////////////////////////////////////////////////////////////////////
+$botman->hears('listar quizzes|listar', function ($bot) {
+    $quizzes = \App\Quiz::orderby('titulo', 'asc')->get();
+
+    foreach($quizzes as $quiz)
+    {
+            $bot->reply($quiz->id."- ".$quiz->titulo);
+    }
+
+    if(count($quizzes) == 0)
+            $bot->reply("Ups, no hay cuestionarios para mostrar.");
+});
+
+
+
+
+
+
+////////////////////////////////////////////////////////////////////////////
 $botman->fallback(function ($bot) {
     $bot->reply("No entiendo que quieres decir, vuelve a intentarlo.");
 });
